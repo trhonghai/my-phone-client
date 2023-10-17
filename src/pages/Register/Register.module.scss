@@ -109,6 +109,17 @@
                 opacity: 0.8;
             }
         }
+
+        .login {
+            margin-top: 10px;
+            text-align: center;
+            font-size: 1.4rem;
+            cursor: pointer;
+
+            a {
+                color: var(--blue);
+            }
+        }
     }
 
     .register-image {

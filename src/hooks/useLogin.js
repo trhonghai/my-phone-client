@@ -5,15 +5,15 @@ import { userSlice } from '~/redux/slice'
 import api from '~/utils/api'
 import { saveUser } from '~/utils/localStorages'
 
-function useRegister() {
+function useLogin() {
     const [loading, setLoading] = useState(false)
     const dispatch = useDispatch()
 
-    const register = async (data) => {
+    const login = async (data) => {
         setLoading(true)
 
         try {
-            const response = await api.post('/users/register', data)
+            const response = await api.post('/users/login', data)
             const { access_token, refresh_token } = response.data.result
 
             saveUser(access_token, refresh_token)
@@ -44,7 +44,7 @@ function useRegister() {
         }
     }
 
-    return { register, loading }
+    return { login, loading }
 }
 
-export default useRegister
+export default useLogin

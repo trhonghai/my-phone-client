@@ -2,11 +2,23 @@ import axios from 'axios'
 import jwtDecode from 'jwt-decode'
 
 import store from '~/redux/store'
-import saveTokens from './saveTokens'
+import { saveUser } from './localStorages'
 
 const api = axios.create({
     baseURL: process.env.REACT_APP_API_URL // http://localhost:8000
 })
+
+let isRefreshing = false
+let refreshSubscribers = []
+
+const onTokenRefreshed = (new_access_token) => {
+    refreshSubscribers.forEach((callback) => callback(new_access_token))
+    refreshSubscribers = []
+}
+
+const addSubscriber = (callback) => {
+    refreshSubscribers.push(callback)
+}
 
 const isAccessTokenExpired = (access_token) => {
     const { exp } = jwtDecode(access_token)
@@ -28,7 +40,10 @@ const callRefreshTokenAPI = async (refresh_token) => {
         const new_refresh_token = response.data.result.refresh_token
 
         // Lưu access token mới và refresh token mới vào local storage
-        saveTokens(new_access_token, new_refresh_token)
+        saveUser(new_access_token, new_refresh_token)
+
+        // Thông báo cho các request đang chờ token mới biết là đã có token mới
+        onTokenRefreshed(new_access_token)
 
         // Trả về access token mới và refresh token mới
         return { new_access_token, new_refresh_token }
@@ -40,14 +55,16 @@ const callRefreshTokenAPI = async (refresh_token) => {
 // Thêm interceptor cho request
 api.interceptors.request.use(
     async (config) => {
-        // Lấy user từ local storage
+        // Lấy access token từ local storage
         const user = JSON.parse(localStorage.getItem('user'))
+        const access_token = user?.access_token
 
-        if (user) {
-            const access_token = user.access_token
+        // Kiểm tra nếu access token hết hạn
+        if (access_token && isAccessTokenExpired(access_token)) {
+            // Nếu chưa có request nào gọi API refresh token thì gọi API refresh token
+            if (!isRefreshing) {
+                isRefreshing = true
 
-            // Kiểm tra nếu access token hết hạn
-            if (access_token && isAccessTokenExpired(access_token)) {
                 const refresh_token = user.refresh_token
                 const { new_access_token, new_refresh_token } = await callRefreshTokenAPI(refresh_token)
 
@@ -63,11 +80,24 @@ api.interceptors.request.use(
                 // Cập nhật access token mới vào header của request
                 config.headers.Authorization = `Bearer ${new_access_token}`
 
+                // Đã có access token mới, set lại biến isRefreshing về false để các request tiếp theo có thể gọi API refresh token
+                isRefreshing = false
+
                 return config
+            } else {
+                // Nếu đang có request nào gọi API refresh token thì đợi đến khi có access token mới thì mới tiếp tục
+                return new Promise((resolve) => {
+                    addSubscriber((new_access_token) => {
+                        config.headers.Authorization = `Bearer ${new_access_token}`
+                        resolve(config)
+                    })
+                })
             }
         }
 
-        // Nếu access token chưa hết hạn, trả về request config ban đầu
+        // Nếu access token chưa hết hạn thì set access token vào header của request
+        config.headers.Authorization = `Bearer ${access_token}`
+
         return config
     },
     (error) => {

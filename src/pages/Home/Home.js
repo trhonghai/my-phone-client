@@ -2,8 +2,9 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import classNames from 'classnames/bind'
 
+import api from '~/utils/api'
+import formatPrice from '~/utils/formatPrice'
 import styles from './Home.module.scss'
-import { api, formatPrice } from '~/utils'
 
 const cx = classNames.bind(styles)
 
@@ -19,7 +20,7 @@ function Home() {
                 setBrands(res.data.result)
             })
             .catch((err) => {
-                console.log(err.response)
+                console.log(err.response.data.message)
             })
     }, [])
 
@@ -36,7 +37,7 @@ function Home() {
                 setPhones(res.data.result.phones)
             })
             .catch((err) => {
-                console.log(err.response)
+                console.log(err.response.data.message)
             })
     }, [brandsChecked])
 

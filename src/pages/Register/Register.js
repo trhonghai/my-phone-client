@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import classNames from 'classnames/bind'
 
 import images from '~/assets/images'
@@ -156,6 +156,10 @@ function Register() {
                 <button type='submit' className={cx('submit')}>
                     Đăng ký
                 </button>
+
+                <div className={cx('login')}>
+                    Bạn đã có tài khoản? <Link to={config.routes.login}>Đăng nhập</Link>
+                </div>
             </form>
             <div className={cx('register-image')}>
                 <img src={images.register} alt='register' />
