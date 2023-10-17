@@ -1,25 +1,51 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Route, Navigate } from 'react-router-dom'
+
+import Wrapper from './Wrapper'
+import routes from './routes'
+import { useSelector } from 'react-redux'
+import { userSelector } from './redux/selectors'
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const currentUser = useSelector(userSelector)
+
+    return (
+        <div className='App'>
+            <Router>
+                <Wrapper>
+                    {routes.map((route, index) => {
+                        const Layout = route.layout
+                        const Page = route.component
+                        const RouteComponent = (
+                            <Route
+                                key={index}
+                                path={route.path}
+                                element={
+                                    <Layout>
+                                        <Page />
+                                    </Layout>
+                                }
+                            />
+                        )
+                        const NavigateComponent = (
+                            <Route key={index} path={route.path} element={<Navigate to={route.redirect} />} />
+                        )
+
+                        if (route.protected) {
+                            if (currentUser) {
+                                return RouteComponent
+                            }
+
+                            return NavigateComponent
+                        } else if (route.redirect && currentUser) {
+                            return NavigateComponent
+                        }
+
+                        return RouteComponent
+                    })}
+                </Wrapper>
+            </Router>
+        </div>
+    )
 }
 
-export default App;
+export default App
