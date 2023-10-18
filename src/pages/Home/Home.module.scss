@@ -1,167 +1,76 @@
 .wrapper {
     margin: 0 auto;
-    padding: 40px 0;
     width: var(--width-layout);
 
-    .heading {
-        font-size: 2.4rem;
-        text-align: center;
+    .slider-wrap {
+        width: var(--width-layout);
+        height: 600px;
+        aspect-ratio: 11 / 5;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
     }
 
-    .content {
-        margin: 20px -10px 0;
-        display: flex;
-        justify-content: space-between;
+    .products-wrap {
+        padding: 40px 0;
 
-        & > div {
-            margin: 0 10px;
+        .heading {
+            font-size: 2.4rem;
+            text-align: center;
+        }
 
-            &.brands {
-                padding: 8px 12px;
-                width: 16%;
-                height: min-content;
-                border-radius: 5px;
-                box-shadow: 1px 2px 4px 0 rgba(0, 0, 0, 0.1);
-                background-color: #f9fafc;
+        .content {
+            margin: 20px -10px 0;
+            display: flex;
+            justify-content: space-between;
 
-                .brands-heading {
-                    font-size: 2rem;
-                }
+            & > div {
+                margin: 0 10px;
 
-                .brands-list {
-                    margin-top: 10px;
-                    display: flex;
-                    flex-direction: column;
+                &.brands {
+                    padding: 8px 12px;
+                    width: 16%;
+                    height: min-content;
+                    border-radius: 5px;
+                    box-shadow: 1px 2px 4px 0 rgba(0, 0, 0, 0.1);
+                    background-color: #f9fafc;
 
-                    .brands-item {
-                        width: min-content;
+                    .brands-heading {
+                        font-size: 2rem;
+                    }
+
+                    .brands-list {
+                        margin-top: 10px;
                         display: flex;
-                        align-items: center;
-                        cursor: pointer;
+                        flex-direction: column;
 
-                        & + .brands-item {
-                            margin-top: 4px;
-                        }
-
-                        input {
-                            margin-right: 10px;
-                            width: 16px;
-                            height: 16px;
+                        .brands-item {
+                            width: min-content;
+                            display: flex;
+                            align-items: center;
                             cursor: pointer;
+
+                            & + .brands-item {
+                                margin-top: 4px;
+                            }
+
+                            input {
+                                margin-right: 10px;
+                                width: 16px;
+                                height: 16px;
+                                cursor: pointer;
+                            }
                         }
                     }
                 }
-            }
 
-            &.phones {
-                width: 84%;
-            }
-        }
-    }
-}
+                &.phones {
+                    width: 84%;
 
-.phones-list {
-    margin: -10px -10px 0;
-    display: flex;
-    flex-wrap: wrap;
-
-    .phones-item {
-        margin: 10px 10px;
-        padding: 8px;
-        width: calc(20% - 20px);
-        display: flex;
-        flex-direction: column;
-        border-radius: 5px;
-        box-shadow: 1px 2px 4px 0 rgba(0, 0, 0, 0.1);
-        background-color: #f9fafc;
-
-        &:hover img {
-            transform: scale(1.05);
-        }
-
-        .above {
-            position: relative;
-
-            .image-wrap {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                border-radius: 4px;
-                background-color: #fff;
-                overflow: hidden;
-
-                img {
-                    width: 150px;
-                    height: 150px;
-                    transition: transform 0.2s ease-in-out;
-                }
-            }
-
-            .save {
-                position: absolute;
-                inset: auto auto -4px -4px;
-                padding: 2px 4px;
-                min-width: 60px;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                border-radius: 4px;
-                color: #fff;
-                background: linear-gradient(45deg, var(--dark-blue), var(--light-blue));
-
-                span {
-                    height: 13px;
-                    font-size: 1rem;
-                    font-weight: 500;
-                }
-            }
-        }
-
-        .details {
-            flex: 1;
-            color: #545d78;
-
-            .brand {
-                margin-top: 12px;
-                font-size: 1.3rem;
-                text-transform: uppercase;
-            }
-
-            .name {
-                margin-top: 8px;
-                height: 64px;
-                font-size: 1.4rem;
-                color: #333;
-                display: -webkit-box;
-                -webkit-box-orient: vertical;
-                -webkit-line-clamp: 3;
-                overflow: hidden;
-            }
-
-            .price {
-                margin-top: 8px;
-                font-size: 1.4rem;
-                font-weight: bold;
-                display: -webkit-box;
-                -webkit-box-orient: vertical;
-                -webkit-line-clamp: 1;
-                overflow: hidden;
-                word-break: break-all;
-                color: var(--blue);
-            }
-
-            .price-before-discount {
-                margin-top: 8px;
-
-                span {
-                    font-size: 1.3rem;
-                    text-decoration: line-through;
-
-                    & + span {
-                        margin-left: 4px;
-                        text-decoration: none;
-                        color: var(--blue);
+                    .phones-list {
+                        margin: -10px -10px 0;
+                        display: flex;
+                        flex-wrap: wrap;
                     }
                 }
             }

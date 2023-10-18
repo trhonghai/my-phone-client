@@ -1,0 +1,104 @@
+// Animation
+@keyframes sleazyUp {
+    0% {
+        transform: translate(-50%, -20%);
+    }
+    100% {
+        transform: translate(-50%, -50%);
+    }
+}
+
+.wrapper {
+    position: relative;
+
+    button.navigation {
+        position: absolute;
+        top: 50%;
+        width: 48px;
+        height: 48px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 1.6rem;
+        border-radius: 50%;
+        color: #fff;
+        background-color: rgba(0, 0, 0, 0.5);
+        transform: translateY(-50%);
+        cursor: pointer;
+        z-index: 1;
+
+        &.left {
+            left: 20px;
+        }
+
+        &.right {
+            right: 20px;
+        }
+    }
+}
+
+.slide {
+    position: relative;
+    display: flex;
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .content {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        padding: 30px;
+        width: 600px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        border-radius: 5px;
+        background-color: rgba(0, 0, 0, 0.5);
+        transform: translate(-50%, -50%);
+
+        &.effect {
+            animation: sleazyUp 0.5s ease-in-out forwards;
+        }
+
+        .heading {
+            font-size: 4rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: #fff;
+        }
+
+        .description {
+            position: relative;
+            margin: 20px 0;
+            font-size: 1.6rem;
+            font-weight: 400;
+            line-height: 1.5;
+            color: #fff;
+
+            &::before {
+                content: '';
+                position: absolute;
+                inset: calc(100% + 20px) 0 auto 0;
+                height: 1px;
+                background-color: #fff;
+            }
+        }
+
+        .btn {
+            margin-top: 20px;
+            padding: 0 20px;
+            width: max-content;
+            height: 36px;
+            font-size: 1.4rem;
+            border-radius: 4px;
+            color: #fff;
+            background-color: var(--blue);
+            cursor: pointer;
+        }
+    }
+}
