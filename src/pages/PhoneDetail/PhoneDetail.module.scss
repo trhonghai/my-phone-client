@@ -1,0 +1,219 @@
+.wrapper {
+    // display: flex;
+    // padding-top: 2.5rem;
+    // padding-bottom: 2.5rem;
+    // justify-content: center;
+    // box-sizing: border-box;
+    // align-items: center;
+    width: var(--width-layout);
+    margin: 0 auto;
+    padding: 40px 0;
+
+    .content {
+
+        margin: 20px -10px 0;
+        display: flex;
+        justify-content: space-between;
+
+        .information {
+            display: flex;
+            padding: 8px 12px;
+            width: 65%;
+            height: min-content;
+            border-radius: 5px;
+            box-shadow: 1px 2px 4px 0 rgba(0, 0, 0, 0.1);
+            background-color: #f9fafc;
+            
+            .image{
+                
+                
+                .image-img {
+                    padding: 8px 12px;
+                    width: 400px;
+                }
+            }
+            .des-phone{
+
+                .name{
+                    // padding: 8px 4px;
+                }
+                
+                .brand-name{
+                    padding: 12px 4px;
+                }
+                .option{
+                    padding: 12px 4px;
+                    // width: 500px;
+                    
+                    display: flex;
+                    .option-button{
+                        margin-right: 12px;
+                        width: 100px;
+                        height: 40px;
+                        cursor: pointer;
+                        background-color: #fff;
+                        border: 1px solid rgb(224, 224, 224);
+                        border-radius: 10px 10px;
+
+                        &:active{
+                            border: 1px solid rgb(41, 49, 206);
+                            
+                        }
+                        &:hover{
+                            border: 1px solid rgb(224, 224, 224);
+                            box-shadow: 1px 2px 4px 0 rgba(0, 0, 0, 0.1);
+
+                        }
+                    }
+                    
+    
+                }
+                .rom{
+                    padding: 12px 4px;
+                    
+                }
+                .option-rom{
+                    padding: 8px 4px;
+
+                    .option-rom-button{
+                        margin-right: 12px;
+                        width: 100px;
+                        height: 30px;
+                        
+                        cursor: pointer;
+                        background-color: #fff;
+                        border: 1px solid rgb(224, 224, 224);
+                        border-radius: 10px 10px;
+
+                        &:active{
+                            border: 1px solid rgb(41, 49, 206);
+                            
+                        }
+                    }
+                }
+                .price{
+                    padding: 20px 4px;
+                    
+                }
+            }
+        }
+        .wish-cart{
+            width: 33%;
+            background-color: #f9fafc;
+            border-radius: 5px;
+            box-shadow: 1px 2px 4px 0 rgba(0, 0, 0, 0.1);
+            .wish-cart-infor{
+                display: flex;
+                margin-top: 10px;
+                .buy-now{
+
+                    .buy-now-button{
+                        color: rgb(20,53,195);
+                        margin-left: 10px;
+                        width: 200px;
+                        height: 80px;
+                        cursor: pointer;
+                        background-color: #fff;
+                        border: 1px solid rgb(20,53,195);
+                        border-radius: 10px 10px;
+                    }
+                }
+                .add-to-cart{
+
+                    .add-to-cart-button{
+                        color: #fff;
+                        padding: 20px 4px;
+                        margin-left: 20px;
+                        width: 200px;
+                        height: 80px;
+                        cursor: pointer;
+                        background-color: rgb(20,53,195);
+                        border: 1px solid rgb(224, 224, 224);
+                        border-radius: 10px 10px;
+                    }
+                }
+            }
+
+            .wish-cart-infor-gift{
+                margin: 20px 8px;
+                display: flex;
+                height: 50px;
+                align-items: center;
+                
+                .wish-cart-infor-gift-text{
+                    margin-left: 12px;
+                }
+                img{
+                    width: 20px;
+                    height:20px;
+                }
+                
+            }
+        }
+
+        
+    }
+
+    .description{
+        margin: 20px -10px 0;
+        display: flex;
+        justify-content: space-between;
+
+        .description-text{
+            padding: 8px 12px;
+            width: 65%;
+            height: min-content;
+            border-radius: 5px;
+            box-shadow: 1px 2px 4px 0 rgba(0, 0, 0, 0.1);
+            background-color: #f9fafc;
+
+            img{
+                width: 830px;
+            }
+            h2{
+                margin-top: 20px;
+            }
+            h3{
+                margin-top: 20px;
+            }
+        }
+        .description-para{
+            // background-color: #f9fafc;
+            width: 33%;
+            height: 1500px;
+            box-shadow: 1px 2px 4px 0 rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+
+            .para-brand{
+                
+                
+               table{
+                width: 100%;
+
+                tr{
+                    
+                    td{
+                        // border:1px solid black;
+                        
+                        margin: 12px 4px;
+                        height: 70px;
+                    }
+                    &:nth-child(even) {
+                        background-color: #fff; // Nền cho các hàng chẵn
+                      }
+                    
+                      &:nth-child(odd) {
+                        background-color: #f9fafc; // Nền cho các hàng lẻ
+                      }
+                }    
+                    
+                
+               }
+                
+            
+            }
+        }
+    }
+
+
+}
